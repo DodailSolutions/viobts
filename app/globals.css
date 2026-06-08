@@ -1,0 +1,244 @@
+@import "tailwindcss";
+
+@source "../components/**/*.tsx";
+
+@theme {
+  /* ─── Swiss-inspired Light Premium Palette ─── */
+  --color-primary: #FFFFFF;
+  --color-accent: #1c45c8;
+  --color-secondary: #7C3AED;
+  --color-surface: #F8FAFC;
+  --color-surface-elevated: #FFFFFF;
+  --color-border: #E2E8F0;
+  --color-border-subtle: #F1F5F9;
+  --color-text-primary: #0F172A;
+  --color-text-secondary: #1E293B;
+  --color-text-muted: #64748B;
+  --color-text-subtle: #94A3B8;
+  --color-success: #059669;
+  --color-warning: #D97706;
+
+  /* ─── Premium Corporate Typography ─── */
+  /* Display: Bold headlines — geometric sans for impact */
+  --font-display: 'SF Pro Display', var(--font-inter), ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+
+  /* Heading: Section titles & navigation — clean & readable */
+  --font-heading: 'SF Pro Text', var(--font-inter), ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+
+  /* Body: Paragraphs & UI text — optimized for readability */
+  --font-body: 'SF Pro Text', var(--font-inter), ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+
+  /* Mono: Code snippets */
+  --font-mono: 'SF Mono', ui-monospace, SFMono-Regular, 'Cascadia Code', 'Fira Code', Menlo, Monaco, Consolas, monospace;
+
+  /* Fluid typography scale */
+  --text-hero: clamp(3rem, 8vw, 5.5rem);
+  --text-h1: clamp(2rem, 5vw, 3.75rem);
+  --text-h2: clamp(1.5rem, 3vw, 2.5rem);
+  --text-h3: clamp(1.25rem, 2vw, 1.75rem);
+  --text-body: clamp(0.9375rem, 1.5vw, 1.0625rem);
+
+  /* ─── Shadows — soft, refined, no colored glows ─── */
+  --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.04);
+  --shadow-card: 0 1px 3px rgba(0, 0, 0, 0.06), 0 1px 2px rgba(0, 0, 0, 0.04);
+  --shadow-elevated: 0 10px 25px -5px rgba(0, 0, 0, 0.08), 0 4px 10px -5px rgba(0, 0, 0, 0.04);
+  --shadow-glow-cyan: 0 0 0 1px rgba(28, 69, 200, 0.1), 0 4px 16px rgba(28, 69, 200, 0.1);
+  --shadow-glow-purple: 0 0 0 1px rgba(124, 58, 237, 0.08), 0 4px 16px rgba(124, 58, 237, 0.08);
+
+  /* ─── Animations ─── */
+  --animate-float: float 6s ease-in-out infinite;
+  --animate-pulse-slow: pulse-slow 4s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+  --animate-gradient: gradient-shift 8s ease infinite;
+  --animate-marquee: marquee 40s linear infinite;
+
+  @keyframes float {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-12px); }
+  }
+
+  @keyframes pulse-slow {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.6; }
+  }
+
+  @keyframes gradient-shift {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+  }
+
+  @keyframes marquee {
+    from { transform: translateX(0); }
+    to { transform: translateX(-50%); }
+  }
+}
+
+@layer base {
+  :root {
+    --background: var(--color-primary);
+    --foreground: var(--color-text-primary);
+  }
+
+  *,
+  *::before,
+  *::after {
+    box-sizing: border-box;
+  }
+
+  html {
+    scroll-behavior: smooth;
+    -webkit-text-size-adjust: 100%;
+  }
+
+  body {
+    background-color: var(--background);
+    color: var(--foreground);
+    font-family: var(--font-body);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    line-height: 1.6;
+    font-size: 16px;
+    letter-spacing: -0.011em;
+  }
+
+  h1, h2 {
+    font-family: var(--font-display);
+    line-height: 1.12;
+    letter-spacing: -0.025em;
+    font-weight: 700;
+  }
+
+  h3, h4, h5, h6 {
+    font-family: var(--font-heading);
+    line-height: 1.3;
+    letter-spacing: -0.015em;
+    font-weight: 600;
+  }
+
+  p {
+    line-height: 1.7;
+  }
+
+  ::selection {
+    background-color: rgba(28, 69, 200, 0.15);
+    color: var(--color-text-primary);
+  }
+}
+
+/* ─── Custom Utility Classes ─── */
+@layer utilities {
+  .container {
+    width: 100%;
+    max-width: 1200px;
+    margin-left: auto;
+    margin-right: auto;
+    padding-left: 1.5rem;
+    padding-right: 1.5rem;
+  }
+
+  @media (min-width: 640px) {
+    .container {
+      padding-left: 2rem;
+      padding-right: 2rem;
+    }
+  }
+
+  @media (min-width: 1024px) {
+    .container {
+      padding-left: 3rem;
+      padding-right: 3rem;
+    }
+  }
+
+  .bg-gradient-brand {
+    background-image: linear-gradient(135deg, #1c45c8 0%, #7C3AED 100%);
+  }
+
+  .bg-gradient-brand-soft {
+    background-image: linear-gradient(135deg, rgba(28, 69, 200, 0.08) 0%, rgba(124, 58, 237, 0.08) 100%);
+  }
+
+  .bg-gradient-surface {
+    background-image: linear-gradient(180deg, #FFFFFF 0%, #F8FAFC 100%);
+  }
+
+  .text-h1 {
+    font-size: var(--text-h1);
+  }
+
+  .text-h2 {
+    font-size: var(--text-h2);
+  }
+
+  .text-h3 {
+    font-size: var(--text-h3);
+  }
+
+  .text-hero {
+    font-size: var(--text-hero);
+  }
+
+  .text-body {
+    font-size: var(--text-body);
+  }
+
+  .shadow-glow-cyan {
+    box-shadow: var(--shadow-glow-cyan);
+  }
+
+  .shadow-glow-purple {
+    box-shadow: var(--shadow-glow-purple);
+  }
+
+  .shadow-card {
+    box-shadow: var(--shadow-card);
+  }
+
+  .shadow-elevated {
+    box-shadow: var(--shadow-elevated);
+  }
+
+  .safe-area-inset-bottom {
+    padding-bottom: env(safe-area-inset-bottom);
+  }
+
+  .perspective-\[1000px\] {
+    perspective: 1000px;
+  }
+
+  /* Accessibility: visually-hidden content for skip links & screen readers */
+  .sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border-width: 0;
+  }
+
+  .focus\:not-sr-only:focus {
+    position: static;
+    width: auto;
+    height: auto;
+    padding: revert;
+    margin: revert;
+    overflow: visible;
+    clip: auto;
+    white-space: normal;
+  }
+}
+
+/* Respect users who prefer reduced motion (WCAG 2.3.3) */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
