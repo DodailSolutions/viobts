@@ -229,6 +229,44 @@
     clip: auto;
     white-space: normal;
   }
+
+  /* Hide scrollbar for Chrome, Safari and Opera */
+  .no-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
+  /* Hide scrollbar for IE, Edge and Firefox */
+  .no-scrollbar {
+    -ms-overflow-style: none;  /* IE and Edge */
+    scrollbar-width: none;  /* Firefox */
+  }
+
+  /* Premium hover shine sweep effect */
+  .shine-effect {
+    position: relative;
+    overflow: hidden;
+  }
+  .shine-effect::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -200%;
+    width: 150%;
+    height: 100%;
+    background: linear-gradient(
+      90deg,
+      transparent 0%,
+      rgba(255, 255, 255, 0.25) 30%,
+      rgba(255, 255, 255, 0.55) 50%,
+      rgba(255, 255, 255, 0.25) 70%,
+      transparent 100%
+    );
+    transform: skewX(-20deg);
+    transition: none;
+  }
+  .shine-effect:hover::after {
+    left: 200%;
+    transition: all 0.75s ease-in-out;
+  }
 }
 
 /* Respect users who prefer reduced motion (WCAG 2.3.3) */

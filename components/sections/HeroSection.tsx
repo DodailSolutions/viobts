@@ -35,15 +35,26 @@ function AnimatedNumber({ target, suffix = "" }: { target: number; suffix?: stri
 function FloatingPill({ icon: Icon, label, delay, className }: { icon: React.ElementType; label: string; delay: number; className?: string }) {
   return (
     <motion.div
-      className={`absolute flex items-center gap-2 rounded-full bg-white px-4 py-2.5 shadow-elevated border border-[#E2E8F0] ${className}`}
+      className={`absolute ${className}`}
       initial={{ opacity: 0, y: 20, scale: 0.9 }}
       animate={{ opacity: 1, y: 0, scale: 1 }}
       transition={{ duration: 0.6, delay, type: "spring", stiffness: 200, damping: 20 }}
     >
-      <div className="w-7 h-7 rounded-full bg-accent/10 flex items-center justify-center flex-shrink-0">
-        <Icon className="w-3.5 h-3.5 text-accent" />
-      </div>
-      <span className="text-xs font-semibold text-[#0F172A] whitespace-nowrap">{label}</span>
+      <motion.div
+        className="flex items-center gap-2 rounded-full bg-white px-4 py-2.5 shadow-elevated border border-[#E2E8F0] cursor-pointer"
+        animate={{ y: [0, -6, 0] }}
+        transition={{
+          duration: 4 + Math.random() * 2,
+          repeat: Infinity,
+          ease: "easeInOut"
+        }}
+        whileHover={{ scale: 1.05, y: -4, borderColor: "#1c45c8", boxShadow: "var(--shadow-glow-cyan)" }}
+      >
+        <div className="w-7 h-7 rounded-full bg-accent/10 flex items-center justify-center flex-shrink-0">
+          <Icon className="w-3.5 h-3.5 text-accent" />
+        </div>
+        <span className="text-xs font-semibold text-[#0F172A] whitespace-nowrap">{label}</span>
+      </motion.div>
     </motion.div>
   )
 }
@@ -51,17 +62,18 @@ function FloatingPill({ icon: Icon, label, delay, className }: { icon: React.Ele
 function TrustLogo({ client, index }: { client: { name: string, logo: string }, index: number }) {
   return (
     <motion.div
-      className="flex items-center justify-center h-16 md:h-20"
-      initial={{ opacity: 0 }}
-      animate={{ opacity: 1 }}
-      transition={{ delay: 1.0 + index * 0.1 }}
+      className="flex items-center justify-center h-8 sm:h-10 md:h-12 shrink-0"
+      initial={{ opacity: 0, y: 15 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.5, delay: 0.8 + index * 0.1, ease: "easeOut" }}
+      whileHover={{ scale: 1.08, y: -3 }}
     >
       <Image
         src={client.logo}
         alt={`${client.name} logo`}
-        width={160}
-        height={60}
-        className="h-14 md:h-16 w-auto object-contain opacity-70 grayscale hover:grayscale-0 hover:opacity-100 transition-all duration-300"
+        width={120}
+        height={40}
+        className="h-5 sm:h-6 md:h-7 lg:h-8 w-auto object-contain opacity-60 grayscale hover:grayscale-0 hover:opacity-100 transition-all duration-300 cursor-pointer"
       />
     </motion.div>
   )
@@ -182,14 +194,22 @@ export function HeroSection() {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5, delay: 0.45 }}
         >
-          <Button size="lg" className="w-full sm:w-auto group text-[0.9375rem] font-semibold px-8 h-13">
-            Book a Free Consultation
-            <ArrowRight className="ml-2 w-4 h-4 transition-transform duration-200 group-hover:translate-x-1" />
-          </Button>
-          <Button size="lg" variant="outline" className="w-full sm:w-auto text-[0.9375rem] h-13">
-            View Case Studies
-            <ChevronRight className="ml-1.5 w-4 h-4" />
-          </Button>
+          <motion.div whileHover={{ scale: 1.02 }} whileTap={{ scale: 0.98 }} className="w-full sm:w-auto">
+            <Button size="lg" className="relative overflow-hidden w-full sm:w-auto group text-[0.9375rem] font-semibold px-8 h-13 shine-effect">
+              <span className="relative z-10 flex items-center justify-center">
+                Book a Free Consultation
+                <ArrowRight className="ml-2 w-4 h-4 transition-transform duration-200 group-hover:translate-x-1" />
+              </span>
+            </Button>
+          </motion.div>
+          <motion.div whileHover={{ scale: 1.02 }} whileTap={{ scale: 0.98 }} className="w-full sm:w-auto">
+            <Button size="lg" variant="outline" className="w-full sm:w-auto text-[0.9375rem] h-13 group">
+              <span className="relative z-10 flex items-center justify-center">
+                View Case Studies
+                <ChevronRight className="ml-1.5 w-4 h-4 transition-transform duration-200 group-hover:translate-x-0.5" />
+              </span>
+            </Button>
+          </motion.div>
         </motion.div>
 
         {/* Micro social proof */}
@@ -211,15 +231,26 @@ export function HeroSection() {
         
         {/* Animated stat card */}
         <motion.div
-          className="absolute bottom-[26%] right-[6%] bg-white rounded-2xl border border-[#E2E8F0] shadow-elevated px-5 py-4 min-w-[160px]"
+          className="absolute bottom-[26%] right-[6%]"
           initial={{ opacity: 0, y: 20, scale: 0.9 }}
           animate={{ opacity: 1, y: 0, scale: 1 }}
           transition={{ duration: 0.6, delay: 1.6, type: "spring", stiffness: 200, damping: 20 }}
         >
-          <p className="text-[10px] font-medium text-[#94A3B8] uppercase tracking-wider mb-1">Projects Delivered</p>
-          <p className="text-3xl font-display font-bold text-[#0F172A]">
-            <AnimatedNumber target={50} suffix="+" />
-          </p>
+          <motion.div
+            className="bg-white rounded-2xl border border-[#E2E8F0] shadow-elevated px-5 py-4 min-w-[160px] cursor-pointer"
+            animate={{ y: [0, -5, 0] }}
+            transition={{
+              duration: 5,
+              repeat: Infinity,
+              ease: "easeInOut"
+            }}
+            whileHover={{ scale: 1.05, y: -4, borderColor: "#7C3AED", boxShadow: "var(--shadow-glow-purple)" }}
+          >
+            <p className="text-[10px] font-medium text-[#94A3B8] uppercase tracking-wider mb-1">Projects Delivered</p>
+            <p className="text-3xl font-display font-bold text-[#0F172A]">
+              <AnimatedNumber target={50} suffix="+" />
+            </p>
+          </motion.div>
         </motion.div>
       </div>
 
@@ -230,11 +261,11 @@ export function HeroSection() {
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.6, delay: 0.9 }}
       >
-        <div className="container py-5 flex flex-col md:flex-row items-center justify-center gap-3 md:gap-12">
-          <p className="text-[11px] text-[#94A3B8] uppercase tracking-[0.15em] font-semibold shrink-0">
+        <div className="container py-4 flex flex-col md:flex-row items-center justify-center gap-4 md:gap-10">
+          <p className="text-[10px] text-[#94A3B8] uppercase tracking-[0.15em] font-bold shrink-0">
             Trusted By
           </p>
-          <div className="flex flex-wrap justify-center items-center gap-8 md:gap-12">
+          <div className="flex flex-nowrap items-center justify-center gap-5 sm:gap-8 md:gap-10 lg:gap-12 overflow-x-auto no-scrollbar w-full md:w-auto">
             {[
               { name: 'Wells Fargo', logo: '/images/clients/wells-fargo.png' },
               { name: 'FDA', logo: '/images/clients/fda.png' },
