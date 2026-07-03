@@ -23,6 +23,7 @@ const nextConfig: NextConfig = {
       { source: '/api-and-microservices-2', destination: '/services/api-microservices', permanent: true },
       { source: '/rpa-ml-ai-2', destination: '/services/rpa-ml-ai', permanent: true },
       { source: '/banking-and-financial-services', destination: '/industries/banking-financial-services', permanent: true },
+      { source: '/contact', destination: '/contact-us', permanent: true },
     ]
   }
 };

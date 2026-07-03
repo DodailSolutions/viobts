@@ -41,7 +41,7 @@ export function CTABanner() {
           <div className="flex flex-col sm:flex-row gap-3 w-full md:w-auto">
             {/* Custom button — NOT using Button component to avoid variant override */}
             <a
-              href="/contact"
+              href="/contact-us"
               className="inline-flex h-12 items-center justify-center rounded-lg bg-white px-8 text-[0.9375rem] font-semibold text-[#0F172A] shadow-lg transition-all duration-200 hover:bg-[#F1F5F9] hover:shadow-xl active:scale-[0.98] group"
             >
               Book Consultation

@@ -32,7 +32,7 @@ export function Footer() {
             <li><Link href="/who-we-are" className="hover:text-accent transition-colors duration-200">About Us</Link></li>
             <li><Link href="/careers" className="hover:text-accent transition-colors duration-200">Careers</Link></li>
             <li><Link href="/blog" className="hover:text-accent transition-colors duration-200">Blog</Link></li>
-            <li><Link href="/contact" className="hover:text-accent transition-colors duration-200">Contact</Link></li>
+            <li><Link href="/contact-us" className="hover:text-accent transition-colors duration-200">Contact</Link></li>
           </ul>
         </div>
         <div>

@@ -24,7 +24,7 @@ export function Header() {
           </nav>
         </div>
         <div className="flex items-center gap-4">
-          <Link href="/contact" className="hidden md:inline-flex h-10 items-center justify-center rounded-lg bg-[#1c45c8] px-5 py-2 text-sm font-medium text-white shadow-sm transition-all duration-200 hover:bg-[#163AAD] hover:shadow-elevated focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent">
+          <Link href="/contact-us" className="hidden md:inline-flex h-10 items-center justify-center rounded-lg bg-[#1c45c8] px-5 py-2 text-sm font-medium text-white shadow-sm transition-all duration-200 hover:bg-[#163AAD] hover:shadow-elevated focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent">
             Book a Call
           </Link>
         </div>

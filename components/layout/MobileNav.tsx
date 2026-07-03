@@ -21,7 +21,7 @@ export function MobileNav() {
           <Users className="w-5 h-5" />
           <span className="text-[10px] font-medium">Company</span>
         </Link>
-        <Link href="/contact" className="flex flex-col items-center justify-center w-full h-full space-y-1 text-text-muted hover:text-accent transition-colors duration-200">
+        <Link href="/contact-us" className="flex flex-col items-center justify-center w-full h-full space-y-1 text-text-muted hover:text-accent transition-colors duration-200">
           <Mail className="w-5 h-5" />
           <span className="text-[10px] font-medium">Contact</span>
         </Link>
